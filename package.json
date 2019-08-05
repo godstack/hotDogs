@@ -4,9 +4,7 @@
   "description": "",
   "main": "hotDogs.js",
   "scripts": {
-    "start": "node app.js",
-    "build": "ng build",
-    "heroku-postbuild": "ng build --prod"
+    "start": "node app.js"
   },
   "engines":{
     "node": "8.12.0"
