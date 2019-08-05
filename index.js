@@ -32,8 +32,8 @@ app.get('/menu', (req, res) => {
 });
 
 
-//app.listen(3000);
 
-app.listen(3000, '0.0.0.0', () => {
+let port = process.env.PORT || 3000;
+app.listen(port,  () => {
     console.log('Listening to port:  ' + 3000);
 });
