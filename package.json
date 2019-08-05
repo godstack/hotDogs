@@ -1,0 +1,24 @@
+{
+  "name": "hotdogs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "hotDogs.js",
+  "scripts": {
+    "start": "node app.js",
+    "build": "ng build",
+    "heroku-postbuild": "ng build --prod"
+  },
+  "engines":{
+    "node": "8.12.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/godstack/hotDogs.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/godstack/hotDogs/issues"
+  },
+  "homepage": "https://github.com/godstack/hotDogs#readme"
+}

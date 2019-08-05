@@ -1,0 +1,16 @@
+html
+head
+   title DELETE HOT DOG
+   body
+        div 
+            a(href="/menu")
+                button(type="button") GO TO MENU
+        br
+
+        form(action = "/hotDogs/delete", method='POST')
+            div        
+                label(for = "id") Delete HOT DOG with the ID: 
+                input(name = "id")
+            br
+            button(type = "submit") DELETE
+        
