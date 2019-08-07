@@ -24,6 +24,7 @@
     "body-parser":"*",
     "multer":"*",
     "cookie-parser":"*",
-    "method-override":"*"
+    "method-override":"*",
+    "pug":"*"
   }
 }
