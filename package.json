@@ -23,6 +23,7 @@
     "express":"*",
     "body-parser":"*",
     "multer":"*",
-    "cookie-parser":"*"
+    "cookie-parser":"*",
+    "method-override":"*"
   }
 }
