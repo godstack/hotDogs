@@ -20,7 +20,7 @@ else{
 
 router.get('/', (req ,res ) => {
 
-    res.json({AllHotDogs: hotDogs, messsage: "Go to the path localhost:3000/menu to navigate"});
+    res.json({AllHotDogs: hotDogs, messsage: "Go to the path /menu to navigate"});
     
 });
 
@@ -28,11 +28,11 @@ router.get('/:id([0-9]{1,})', (req, res) => {
     let currHotDog = hotDogs.find(hotDog => hotDog.id == req.params.id);
    
     if(currHotDog){
-        res.json({FindedHotDog: currHotDog, messsage: "Go to the path localhost:3000/menu to navigate"}); 
+        res.json({FindedHotDog: currHotDog, messsage: "Go to the path /menu to navigate"}); 
         
     }else{
         res.status(404);
-        res.json({messsage: "Not Found, go to the path localhost:3000/menu to navigate"});
+        res.json({messsage: "Not Found, go to the path /menu to navigate"});
     }
 });
 
@@ -48,21 +48,21 @@ router.post('/create', (req, res) => {
         !req.body.typeOfSausage ){
         console.log(req.body);
         res.status(400);
-        res.json({message: "Bad Request, go to the path localhost:3000/menu to navigate"});
+        res.json({message: "Bad Request, go to the path /menu to navigate"});
       
      } else {
-        let newId = (hotDogs[hotDogs.length-1] == undefined) ? 1: (hotDogs[hotDogs.length-1].id + 1);
-
+        let newId = (hotDogs[hotDogs.length-1] == undefined) ? 1: (Number(hotDogs[hotDogs.length-1].id) + 1);
+        
         let newMustard = (req.body.mustard != undefined) ? true : false;
 
         hotDogs.push({
-           id: newId,
            name: req.body.name,
            size: req.body.size,
            typeOfSausage: req.body.typeOfSausage,
            mustard: newMustard,
+           id: newId
         });
-        res.json({message: "New hotDog created.", location: `localhost:3000/HotDog/${newId}, or go to the path localhost:3000/menu to navigate`});
+        res.json({message: "New hotDog created.", location: `/HotDog/${newId}, or go to the path /menu to navigate`});
 
         let newData = JSON.stringify(hotDogs);
         fs.writeFileSync('./hotDogs.json', newData);
@@ -80,7 +80,7 @@ router.post('/update', (req ,res) => {
   
     if(updateIndex == -1){
         res.status(404);
-        res.json({messsage: "Not Found, go to the path localhost:3000/menu to navigate"});
+        res.json({messsage: "Not Found, go to the path /menu to navigate"});
     }else{
 
         let newMustard = (req.body.mustard != undefined) ? true : false;
@@ -95,7 +95,7 @@ router.post('/update', (req ,res) => {
          };
         
        
-        res.json({message: "HotDog updated!", location: `localhost:3000/HotDog/${req.body.id}, or go to the path localhost:3000/menu to navigate`});
+        res.json({message: "HotDog updated!", location: `/HotDog/${req.body.id}, or go to the path /menu to navigate`});
 
         let newData = JSON.stringify(hotDogs);
         fs.writeFileSync('./hotDogs.json', newData);
@@ -114,13 +114,13 @@ router.post('/delete', (req ,res) => {
 
     if(deleteIndex == -1){
         res.status(404);
-        res.json({messsage: "Not Found, go to the path localhost:3000/menu to navigate"});
+        res.json({messsage: "Not Found, go to the path /menu to navigate"});
     }else{
          hotDogs.splice(deleteIndex, 1);
 
         
        
-        res.json({message: `Hotdog with id ${req.body.id} removed, go to the path localhost:3000/menu to navigate`});
+        res.json({message: `Hotdog with id ${req.body.id} removed, go to the path /menu to navigate`});
 
         let newData = JSON.stringify(hotDogs);
         fs.writeFileSync('./hotDogs.json', newData);
