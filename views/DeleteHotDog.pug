@@ -1,16 +1,27 @@
 html
 head
+   style
+        include style.css
+
    title DELETE HOT DOG
    body
+        br
         div 
             a(href="/menu")
                 button(type="button") GO TO MENU
         br
-
-        form(action = "/hotDogs/delete", method='POST')
-            div        
-                label(for = "id") Delete HOT DOG with the ID: 
-                input(name = "id")
-            br
-            button(type = "submit") DELETE
-        
+        if(done == false)
+            if(go == true)
+                div(class='container')
+                    div(class='row main-form')
+                        form(action = "/hotDogs/delete", method='POST')
+                            br
+                            div(class='form-group')             
+                                label(for = "id") Delete HOT DOG with the ID: 
+                                input(name = "id")
+                            br
+                            button(type = "submit") DELETE
+            else
+                p Hotdog removed
+        else
+            p Bad request

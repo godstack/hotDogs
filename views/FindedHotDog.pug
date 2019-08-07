@@ -1,0 +1,21 @@
+html
+head
+   title ALL HOT DOGS
+   body
+        br
+        div 
+            a(href="/menu")
+                button(type="button") GO TO MENU
+        br
+        
+        if(go == true )
+            ul
+                for item in results
+                    if(item.id == find)
+                        li= "ID: " + item.id + ", Name: " + item.name + ", Size: " + item.size + ", Type of sausage: " + item.typeOfSausage + ", Mustard: " + item.mustard 
+                    else 
+                        p Bad Request
+                    br
+        else
+            p Bad Request
+         

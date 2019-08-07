@@ -1,0 +1,21 @@
+html
+head
+   title ALL HOT DOGS
+   body
+        br
+        div 
+            a(href="/menu")
+                button(type="button") GO TO MENU
+        br
+
+       
+        div(class='container')
+            div(class='row main-form')
+                form(action = "/hotDogs/find", method='POST')
+                    br
+                    div(class='form-group')             
+                        label(for = "id") Find HOT DOG with the ID: 
+                        input(name = "id")
+                    br
+                    button(type = "submit") FIND    
+        

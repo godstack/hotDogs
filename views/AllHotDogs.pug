@@ -1,0 +1,22 @@
+html
+head
+   style
+        include style.css
+
+   title ALL HOT DOGS
+   body
+        br
+        div 
+            a(href="/menu")
+                button(type="button") GO TO MENU
+        br
+        if(isEmpty == false)
+            ul
+                for item in results
+                    li= "ID: " + item.id + ", Name: " + item.name + ", Size: " + item.size + ", Type of sausage: " + item.typeOfSausage + ", Mustard: " + item.mustard 
+                    br
+        else
+            p NOT FOUND. You haven't added any hot dogs
+
+
+        

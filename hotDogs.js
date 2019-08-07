@@ -19,26 +19,28 @@ else{
 
 
 router.get('/', (req ,res ) => {
-
-    res.json({AllHotDogs: hotDogs, messsage: "Go to the path /menu to navigate"});
-    
+    let isEmpty = (hotDogs.length == 0) ? true : false;
+    res.render('AllHotDogs', {results: hotDogs, isEmpty: isEmpty}); 
 });
 
-router.get('/:id([0-9]{1,})', (req, res) => {
-    let currHotDog = hotDogs.find(hotDog => hotDog.id == req.params.id);
+router.get('/find', (req, res) => {
+    
+    res.render('FindHotDog', {results: hotDogs}); 
+});
+
+
+router.post('/find', (req, res) => {
+    if(!req.body.id){
+        res.render('FindedHotDog', {results: hotDogs, find: req.body.id, go: false}); 
    
-    if(currHotDog){
-        res.json({FindedHotDog: currHotDog, messsage: "Go to the path /menu to navigate"}); 
-        
     }else{
-        res.status(404);
-        res.json({messsage: "Not Found, go to the path /menu to navigate"});
+        res.render('FindedHotDog', {results: hotDogs, find: req.body.id, go: true}); 
     }
 });
 
-
 router.get('/create', (req, res) => {
-    res.render('CreateHotDog');
+ 
+    res.render('CreateHotDog', {go: true, done: false});
 })
 
 
@@ -46,9 +48,10 @@ router.post('/create', (req, res) => {
     if(!req.body.name ||
         !req.body.size ||
         !req.body.typeOfSausage ){
-        console.log(req.body);
-        res.status(400);
-        res.json({message: "Bad Request, go to the path /menu to navigate"});
+        
+        
+    
+        res.render('CreateHotDog', {go: false, done: false});
       
      } else {
         let newId = (hotDogs[hotDogs.length-1] == undefined) ? 1: (Number(hotDogs[hotDogs.length-1].id) + 1);
@@ -62,7 +65,9 @@ router.post('/create', (req, res) => {
            mustard: newMustard,
            id: newId
         });
-        res.json({message: "New hotDog created.", location: `/HotDog/${newId}, or go to the path /menu to navigate`});
+ 
+        res.render('CreateHotDog', {go: false, done: true});
+        
 
         let newData = JSON.stringify(hotDogs);
         fs.writeFileSync('./hotDogs.json', newData);
@@ -71,7 +76,7 @@ router.post('/create', (req, res) => {
 
 
 router.get('/update', (req, res) => {
-    res.render('UpdateHotDog');
+    res.render('UpdateHotDog', {go: true, done: false});
 });
 
 
@@ -79,8 +84,8 @@ router.post('/update', (req ,res) => {
     let updateIndex = hotDogs.findIndex(hotDog => hotDog.id == req.body.id);
   
     if(updateIndex == -1){
-        res.status(404);
-        res.json({messsage: "Not Found, go to the path /menu to navigate"});
+        
+        res.render('UpdateHotDog', {go: false, done: false});
     }else{
 
         let newMustard = (req.body.mustard != undefined) ? true : false;
@@ -95,7 +100,7 @@ router.post('/update', (req ,res) => {
          };
         
        
-        res.json({message: "HotDog updated!", location: `/HotDog/${req.body.id}, or go to the path /menu to navigate`});
+         res.render('UpdateHotDog', {go: false, done: true});
 
         let newData = JSON.stringify(hotDogs);
         fs.writeFileSync('./hotDogs.json', newData);
@@ -105,7 +110,7 @@ router.post('/update', (req ,res) => {
 //
 
 router.get('/delete', (req, res) => {
-    res.render('DeleteHotDog');
+    res.render('DeleteHotDog', {done: false, go: true});
 });
 
 
@@ -113,14 +118,14 @@ router.post('/delete', (req ,res) => {
     let deleteIndex = hotDogs.findIndex(hotDog => hotDog.id == req.body.id);
 
     if(deleteIndex == -1){
-        res.status(404);
-        res.json({messsage: "Not Found, go to the path /menu to navigate"});
+        
+        res.render('DeleteHotDog', {done: true, go: false});
     }else{
          hotDogs.splice(deleteIndex, 1);
 
         
        
-        res.json({message: `Hotdog with id ${req.body.id} removed, go to the path /menu to navigate`});
+         res.render('DeleteHotDog', {done: false, go: false});
 
         let newData = JSON.stringify(hotDogs);
         fs.writeFileSync('./hotDogs.json', newData);

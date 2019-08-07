@@ -1,65 +1,78 @@
 html
 head
+   style
+      include style.css
+
    title UPDATE HOT DOG
    body
+      br
       div 
          a(href="/menu")
             button(type="button") GO TO MENU
       br
 
-      form(action = "/hotDogs/update", method='POST')
-         div        
-            label(for = "id") Update HOT DOG with the ID: 
-            input(name = "id")
-         br
-         div        
-            label(for = "name") Update information about Name: 
-            input(name = "name")
-         br
-         div
-            
-            label(for = "size") Update information about Size: 
-             
-            label(for='size') Big
-            input(type='radio'
-                  name='size'
-                  value='big'
-                  checked)
-            
-            label(for='size') Medium
-            input(type='radio'
-                  name='size'
-                  value='medium')
-            
-            label(for='size') Small
-            input(type='radio'
-                  name='size'
-                  value='small'
-                  )
-                
-         br
-         div
-            
-            label(for = "typeOfSausage") Update information about Type of sausage: 
-             
-            label(for='typeOfSausage') Smoked
-            input(type='radio'
-                  name='typeOfSausage'
-                  value='Smoked'
-                  checked)
-             
-            
-            label(for='typeOfSausage') Milk
-            input(type='radio'
-                  name='typeOfSausage'
-                  value='Milk'
-                  )
-         br
-         div
-            label(for = "mustard") Update information about Mustard: 
-            input(
-            type='checkbox'
-            name='mustard'
-            checked)
-         br
-         button(type = "submit") Update the HOTDOG
+      if(done == false)
+         if(go == true)
+            div(class='container')
+               div(class='row main-form')
+                  form(action = "/hotDogs/update", method='POST')
+                     br
+                     div(class='form-group')          
+                        label(for = "id") Update HOT DOG with the ID: 
+                        input(name = "id")
+                     br
+                     div(class='form-group')         
+                        label(for = "name") Update information about Name: 
+                        input(name = "name")
+                     br
+                     div(class='form-group') 
+                        
+                        label(for = "size") Update information about Size: 
+                     div(class='form-group')    
+                        label(for='size') Big
+                        input(type='radio'
+                              name='size'
+                              value='big'
+                              checked)
+                     div(class='form-group')    
+                        label(for='size') Medium
+                        input(type='radio'
+                              name='size'
+                              value='medium')
+                     div(class='form-group')    
+                        label(for='size') Small
+                        input(type='radio'
+                              name='size'
+                              value='small'
+                              )
+                           
+                     br
+                     div(class='form-group') 
+                        
+                        label(for = "typeOfSausage") Update information about Type of sausage: 
+                     div(class='form-group')    
+                        label(for='typeOfSausage') Smoked
+                        input(type='radio'
+                              name='typeOfSausage'
+                              value='Smoked'
+                              checked)
+                        
+                     div(class='form-group')    
+                        label(for='typeOfSausage') Milk
+                        input(type='radio'
+                              name='typeOfSausage'
+                              value='Milk'
+                              )
+                     br
+                     div(class='form-group') 
+                        label(for = "mustard") Update information about Mustard: 
+                        input(
+                        type='checkbox'
+                        name='mustard'
+                        checked)
+                     br
+                     button(type = "submit") UPDATE THE HOT DOG
+         else
+            p Bad Request
+      else
+         p HotDog updated!

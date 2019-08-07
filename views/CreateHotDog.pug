@@ -1,60 +1,72 @@
 html
 head
+   style
+      include style.css
+
    title CREATE HOT DOG
    body
+      br
       div 
          a(href="/menu")
             button(type="button") GO TO MENU
       br
 
-      form(action = "/hotDogs/create", method = "POST")
-         div        
-            label(for = "name") Name: 
-            input(name = "name")
-         br
-         div
-            label(for = "size") Size: 
-            
-            label(for='size') Big
-            input(type='radio'
-                  name='size'
-                  value='big'
-                  checked)
-            
-            label(for='size') Medium
-            input(type='radio'
-                  name='size'
-                  value='medium')
-            
-            label(for='size') Small
-            input(type='radio'
-                  name='size'
-                  value='small'
-                  )
-                
-         br
-         div
-            label(for = "typeOfSausage") Type of sausage: 
-            
-            label(for='typeOfSausage') Smoked
-            input(type='radio'
-               name='typeOfSausage'
-               value='Smoked'
-               checked)
-             
-            
-            label(for='typeOfSausage') Milk
-            input(type='radio'
-                  name='typeOfSausage'
-                  value='Milk'
-                  )
-         br
-         div
-            label(for = "mustard") Mustard: 
-            input(
-            type='checkbox'
-            name='mustard'
-            checked)
-         br
-         button(type = "submit") Create new hot dog
-
+      if(done ==  false)
+         if(go == true)
+            div(class='container')
+               div(class='row main-form')
+                  form(action = "/hotDogs/create", method = "POST")
+                     br
+                     div(class='form-group')        
+                        label(for = "name") Name:   
+                        input(name = "name")
+                     br
+                     div(class='form-group') 
+                        label(for = "size") Size: 
+                     div(class='form-group')    
+                        label(for='size') Big
+                        input(type='radio'
+                              name='size'
+                              value='big'
+                              checked)
+                     div(class='form-group')
+                        label(for='size') Medium
+                        input(type='radio'
+                              name='size'
+                              value='medium')
+                     div(class='form-group')
+                        label(for='size') Small
+                        input(type='radio'
+                              name='size'
+                              value='small'
+                              )
+                           
+                     br
+                     div(class='form-group')
+                        label(for = "typeOfSausage") Type of sausage: 
+                     div(class='form-group')   
+                        label(for='typeOfSausage') Smoked
+                        input(type='radio'
+                           name='typeOfSausage'
+                           value='Smoked'
+                           checked)
+                        
+                     div(class='form-group')   
+                        label(for='typeOfSausage') Milk
+                        input(type='radio'
+                              name='typeOfSausage'
+                              value='Milk'
+                              )
+                     br
+                     div(class='form-group')
+                        label(for = "mustard") Mustard: 
+                        input(
+                        type='checkbox'
+                        name='mustard'
+                        checked)
+                     br
+                     button(type = "submit") CREATE NEW HOT DOG
+         else
+            p Bad Request
+      else 
+         p New hotDog created.
