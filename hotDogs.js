@@ -31,10 +31,10 @@ router.get('/find', (req, res) => {
 
 router.post('/find', (req, res) => {
     if(!req.body.id){
-        res.render('FindedHotDog', {results: hotDogs, find: req.body.id, go: false}); 
+        res.render('FindedHotDog', {results: hotDogs, find: req.body.id, go: false, value: false}); 
    
     }else{
-        res.render('FindedHotDog', {results: hotDogs, find: req.body.id, go: true}); 
+        res.render('FindedHotDog', {results: hotDogs, find: req.body.id, go: true, value: false}); 
     }
 });
 
